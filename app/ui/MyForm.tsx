@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useForm, Controller, SubmitHandler, FieldValues} from 'react-hook-form';
+import {hasContent, validateExpiryDate, validateThreeDigitNumber, validateZipCode} from "@/app/validators";
 
 interface FormValues {
     username: string;
@@ -32,6 +33,17 @@ export const MyForm: React.FC<FormProps> = ({onSubmit}) => {
         return touchedFields[fieldName] && !errors[fieldName];
     };
 
+    const fieldInfo = [{
+        label: 'Card Number',
+        name: 'cardNumber',
+        labelName: 'Credit Card Number',
+        validator: validateCreditCardNumber
+    },
+        {label: 'Expires (MM/YY)', name: 'expiryDate', labelName: 'expiration Date', validator: validateExpiryDate},
+        {label: 'Security code (CVV)', name: 'ccv', labelName: 'Security Code', validator: validateThreeDigitNumber},
+        {label: 'Name on Card', name: 'name', labelName: 'Name', validator: hasContent},
+        {label: 'Zip Code', name: 'zip', labelName: 'Zip Code', validator: validateZipCode},
+    ];
 
     const actualForm = (<form onSubmit={handleSubmit(innerSubmit)} className="space-y-4">
         <div className="relative">
