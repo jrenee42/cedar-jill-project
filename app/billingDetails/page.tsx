@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {FieldValues} from 'react-hook-form';
 import {TextForm} from "@/app/ui/TextForm";
 import clsx from 'clsx';
+import MyForm from "@/app/ui/MyForm";
 
 export default function Page() {
     // 1 or 2
@@ -38,7 +39,8 @@ export default function Page() {
                         setActiveSection(1)
                     }}>Edit</div>)}
                 </div>
-                {activeSection === 1 && <TextForm onSubmit={handleFormSubmit}/>}
+                <TextForm onSubmit={handleFormSubmit}/>
+                <MyForm onSubmit={handleFormSubmit}/>
 
                 <div className="flex flex-row items-center justify-between number-header">
                     <div className="flex items-center">
