@@ -29,8 +29,14 @@ const MyForm2: React.FC<MyFormProps> = ({onSubmit, fields}) => {
     };
 
     const isFieldValid = (fieldName: string) => {
+        const vals = getValues();
+        console.log('vals???', vals);
         return touchedFields[fieldName] && !errors[fieldName];
     };
+
+    const isFieldInvalid = (fieldName: string) => {
+        return touchedFields[fieldName] && errors[fieldName];
+    }
 
     const actualForm = (
         <form onSubmit={handleSubmit(handleFormSubmit)}
@@ -52,7 +58,7 @@ const MyForm2: React.FC<MyFormProps> = ({onSubmit, fields}) => {
                                     {...controllerField}
                                     className={`block w-full border ${errors[field.name] ? 'border-red-500' : 'border-gray-300'} rounded py-2 px-4 focus:outline-none focus:ring-2 ${errors[field.name] ? 'focus:ring-red-500' : 'focus:ring-blue-500'}`}
                                 />
-                                {errors[field.name] && (
+                                {isFieldInvalid(field.name) && (
                                     <Image src='/errorBang.png'
                                            width={24}
                                            height={24}
@@ -66,14 +72,13 @@ const MyForm2: React.FC<MyFormProps> = ({onSubmit, fields}) => {
                         <span className="absolute right-2 top-9 text-green-500">&#10003;</span>
                     )}
 
-                    {errors[field.name] &&
+                    {isFieldInvalid(field.name) &&
                         <span className="text-red-500 text-sm mt-1">{`Invalid ${field.labelName}`}</span>}
                 </div>
             ))}
 
             <button
                 type="submit"
-                disabled={!isValid}
                 className={`w-full bg-blue-500 text-white py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 hover:bg-blue-700 ${!isValid ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
                 Submit
