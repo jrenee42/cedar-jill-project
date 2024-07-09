@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <body className={inter.className}>
+    <div>
+      <div className="w-[100%] bg-white">
+        <Image
+            src="/abc-logo.png"
+            width={153}
+            height={81}
+            className="block ml-[14px]"
+            alt="abc health logo"
+        />
+      </div>
+
+
+      {children}
+
+    </div>
+    </body>
     </html>
-  );
+);
 }
