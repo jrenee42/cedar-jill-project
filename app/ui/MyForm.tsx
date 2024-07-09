@@ -121,7 +121,12 @@ export const MyForm: React.FC<FormProps> = ({onSubmit}) => {
         </button>
     </form>);
 
-    return actualForm;
+    if (show) {
+        return actualForm;
+    }
+    return <div>
+        <button onClick={() => setShow(true)}>edit</button>
+    </div>
 };
 
 export default MyForm;
