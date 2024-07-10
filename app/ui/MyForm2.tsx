@@ -113,11 +113,12 @@ const MyForm2: React.FC<MyFormProps> = ({onSubmit, fields, onEditClick}) => {
     if (show) {
         return actualForm;
     }
+    // not enough time to take the edit out of this form; so using positioning instead.
     return <div>
-        <div className='text-blue-500 hover:text-blue-700' onClick={() => {
+        <div className='text-blue-500 hover:text-blue-700 relative -top-12 left-[245px]' onClick={() => {
             setShow(true);
             onEditClick();
-        }}>edit
+        }}>Edit
         </div>
     </div>
 };

@@ -54,9 +54,9 @@ export default function Page() {
         {label: 'Zip Code', name: 'zip', labelName: 'Zip Code', validator: validateZipCode},
     ];
 
-    const payPart = <div>
+    const payPart = <div className='text-gray-700'>
         <div>
-            You're about to make a payment of $800
+            You're about to make a payment of <span className='font-extrabold'>$800</span>
         </div>
 
         <div> for credit card ending in ****{ccendNumber}</div>
